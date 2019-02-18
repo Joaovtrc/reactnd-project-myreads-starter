@@ -6,7 +6,7 @@ const BookDetails = (props) =>(
         <div className="book-authors">
         {
             props.authors.map(aut =>(
-                <span key={aut}>{aut}</span>
+               <p>{aut}</p>
             ))
         }
        </div>
