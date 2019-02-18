@@ -5,8 +5,9 @@ class Shelf extends Component {
 
     state = {}
 
+
+
     render() {
-        console.log('shelfprops',this.props)
         return (
 
             <div className="bookshelf">
@@ -16,7 +17,7 @@ class Shelf extends Component {
 
                     {this.props.content.books.map(book =>
                         <li key={book.id}>
-                          <Book content={book} />
+                          <Book content={book} updateShelfs={this.props.updateShelfs}/>
                         </li>
                     )}
 

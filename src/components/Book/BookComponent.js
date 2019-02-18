@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import BookShelfChanger from "./BookShelfChangerComponent";
 import BookDetails from "./BookDetailsComponent";
+import  * as BooksAPI from "../../BooksAPI";
 
 class Book extends Component {
 
     state = {}
 
-    moveBookToShelf = (value) =>{
-        console.log(value);
+    moveBookToShelf = (shelf) =>{
+        BooksAPI.update(this.props.content, shelf).then(res =>{
+            this.props.updateShelfs();
+        })
     }
 
     render() {

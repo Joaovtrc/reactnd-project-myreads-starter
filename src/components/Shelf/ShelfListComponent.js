@@ -26,9 +26,12 @@ class ShelfList extends Component {
       }))
     }
 
+    updateShelfs = () => {
+      this.getAllBooks();
+    }
+
     getAllBooks = () => {
       BooksAPI.getAll().then(allBooks =>{
-        console.log(allBooks);
         this.asignShelfs(allBooks);
       });
     }
@@ -50,7 +53,7 @@ class ShelfList extends Component {
             <div className="list-books-content">
               <div>
                 {this.state.shelfs.map((shelf)=>
-                  <Shelf key={shelf.title} content={shelf} />
+                  <Shelf key={shelf.title} content={shelf} updateShelfs={this.updateShelfs}/>
                 )}
               </div>
             </div>
