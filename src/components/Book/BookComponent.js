@@ -9,7 +9,8 @@ class Book extends Component {
 
     moveBookToShelf = (shelf) =>{
         BooksAPI.update(this.props.content, shelf).then(res =>{
-            this.props.updateShelfs();
+            if(this.props.updateShelfs)
+                this.props.updateShelfs();
         })
     }
 
@@ -19,7 +20,7 @@ class Book extends Component {
 
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${content.imageLinks.thumbnail})` }}></div>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: content.imageLinks !== undefined ? `url(${content.imageLinks.thumbnail})`: 'url()' }}></div>
                     <BookShelfChanger value={content.shelf} moveBook={this.moveBookToShelf} />
                 </div>
                 <BookDetails title={content.title} authors={content.authors} />

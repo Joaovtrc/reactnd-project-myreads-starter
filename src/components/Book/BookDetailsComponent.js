@@ -5,9 +5,15 @@ const BookDetails = (props) =>(
         <div className="book-title">{props.title}</div>
         <div className="book-authors">
         {
-            props.authors.map(aut =>(
-               <p key={aut}>{aut}</p>
-            ))
+            props.authors !== undefined
+                ?
+                props.authors.map(aut =>(
+                    <p key={aut}>{aut}</p>
+                ))
+                :
+                <p>No authors</p>
+
+
         }
        </div>
     </div>
