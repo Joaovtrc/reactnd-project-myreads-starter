@@ -21,6 +21,18 @@ To get started developing right away:
 │   ├── favicon.ico # React Icon, You may change if you wish.
 │   └── index.html # DO NOT MODIFY
 └── src
+    ├──components
+    │   ├──Book
+    │   │   ├──BookComponentComponent.js # Render and hold state for the book component. Has methods to change the shelf value.
+    │   │   ├──BookDetailsComponent.js # Render books details (Title and Authors).
+    │   │   ├──BookListComponent.js # Render a list of Books.
+    │   │   └──BookShelfChangerComponent.js # Render the book shelf changer.
+    │   ├──Search
+    │   │   ├──SearchBarComponent.js # Render the searchBar (input for searching) and the Link to return to main page.
+    │   │   └──SearchComponent.js # Render and hold state for the SearchComponent (display books results in a BookList).
+    │   └──Shelf
+    │       ├──ShelfComponent.js #Render a Shelf with a title and display results with a BookList
+    │       └──ShelfListComponent.js # Renders a list of Shelfs and hold state for all of them (has methods to update the list)
     ├── App.css # Styles for your app. Feel free to customize this as you desire.
     ├── App.js # This is the root of your app. Contains static HTML right now.
     ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
@@ -63,7 +75,7 @@ update(book, shelf)
 ```
 
 * book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
+* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]
 * Returns a Promise which resolves to a JSON object containing the response data of the POST request
 
 ### `search`

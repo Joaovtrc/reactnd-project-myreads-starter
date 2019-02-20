@@ -5,25 +5,39 @@ import  * as BooksAPI from "../../BooksAPI";
 
 class Book extends Component {
 
-    state = {}
+    state = {
+        book: this.props.content
+    }
 
-    moveBookToShelf = (shelf) =>{
-        BooksAPI.update(this.props.content, shelf).then(res =>{
-            if(this.props.updateShelfs)
+    moveBookToShelf = (shelfUpdate) =>{
+        BooksAPI.update(this.state.book, shelfUpdate).then(res =>{
+            if(this.props.updateShelfs){
                 this.props.updateShelfs();
+            }else{
+                console.log(this.state.book);
+
+                this.setState({
+                    book: {
+                        ...this.state.book,
+                        shelf: shelfUpdate
+                        }
+                });
+
+                console.log(this.state.book)
+
+            }
         })
     }
 
     render() {
-        const {content} = this.props
         return (
 
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: content.imageLinks !== undefined ? `url(${content.imageLinks.thumbnail})`: 'url()' }}></div>
-                    <BookShelfChanger value={content.shelf} moveBook={this.moveBookToShelf} />
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: this.state.book.imageLinks !== undefined ? `url(${this.state.book.imageLinks.thumbnail})`: 'url()' }}></div>
+                    <BookShelfChanger value={this.state.book.shelf} moveBook={this.moveBookToShelf} />
                 </div>
-                <BookDetails title={content.title} authors={content.authors} />
+                <BookDetails title={this.state.book.title} authors={this.state.book.authors} />
             </div>
 
         )

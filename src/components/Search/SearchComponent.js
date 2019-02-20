@@ -8,7 +8,18 @@ class Search extends Component {
     state = {
         searchQuery: '',
         timeoutSearch: 0,
-        books: []
+        books: [],
+        booksOnShelf: []
+    }
+
+
+    componentDidMount(){
+        BooksAPI.getAll().then(res =>{
+            this.setState({
+                booksOnShelf: res,
+            })
+
+        })
 
     }
 
@@ -33,6 +44,7 @@ class Search extends Component {
                     this.setState({
                         books: res,
                     });
+                    this.setBooksShelfs();
                 }else{
                     this.setState({
                         books: [],
@@ -50,6 +62,22 @@ class Search extends Component {
 
     }
 
+    setBooksShelfs = () =>{
+        this.setState({
+            books: this.state.books.map(book => {
+
+                const bookOnShelf = this.state.booksOnShelf.find(shelfBook => book.id ===  shelfBook.id)
+
+                if(bookOnShelf){
+                    book.shelf = bookOnShelf.shelf;
+                }else{
+                     book.shelf = 'none';
+                }
+                return book;
+             }),
+        });
+
+    }
 
 
     render() {
