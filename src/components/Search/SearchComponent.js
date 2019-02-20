@@ -34,6 +34,8 @@ class Search extends Component {
                this.searchBooks(query)
             }, 2000),
         })
+
+        // Thanks to Saba Hassan! (https://stackoverflow.com/a/42223871)
     }
 
     searchBooks(query){
